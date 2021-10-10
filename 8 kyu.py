@@ -346,7 +346,7 @@ multiple_of_index([22, -6, 32, 82, 9, 25])  # [-6, 32, 25]
 multiple_of_index([68, -1, 1, -7, 10, 10])  # [-1, 10]
 
 
-# 26. На вход дается число n и n чисел. Вывести все эти числа (кроме числа n) в одну строку через пробел
+# 26. На вход дается число n чисел. Вывести все эти числа (кроме числа n) в одну строку через пробел
 def find_n():
     n = int(input('Введите число: '))
     print(' '.join(map(str, [n for n in range(1, n)])))
@@ -383,4 +383,22 @@ def find_sum_prog():
     print(f'Сумма первых {n} чисел арифметической прогрессии - {int(final_sum)}')
 
 
-find_sum_prog()  # 145
+#find_sum_prog()  # 145
+
+
+# 30. Do you speak "English"?. На входе строка, проверить содержит ли оно слово 'english' в разных раскладках
+def sp_eng(sentence):
+    # РЕШЕНИЕ №1
+    return True if sentence.lower().find('english') != -1 else False
+
+    # РЕШЕНИЕ №2
+    return 'english' in sentence.lower()
+
+
+sp_eng('English')  # True
+sp_eng('1234english ;k')  # True
+sp_eng('egnlish')  # False
+
+
+objects = [1, 2, 1, 2, 3]
+print(len(set(objects)))
