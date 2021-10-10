@@ -263,3 +263,124 @@ def hello(name):
 hello("john")  # Hello, John!
 hello("aliCE")  # Hello, Alice!
 hello("")  # Hello, World!
+
+# 21. Return Two Highest Values in List. Дан список из чисел. Нужно вернуть 2 максимальных значения в списке,
+# если меньше 2 уникальных значений - вернуть его
+# def two_highest(arg1):
+#     print(sorted(set(arg1))[:0:-1] if len(set(arg1)) > 2 else list(set(arg1)))
+#
+#
+# two_highest([15, 20, 20, 17])  # [20, 17]
+# two_highest([1, 1, 1])  # [1]
+# two_highest([])  #
+
+# 22. Beginner Series #4 Cockroach. Тараканы - самые быстрые насекомые. Перевести скорость км/ч в см/сек
+import math
+
+
+def cockroach_speed(s):
+    # Решение №1
+    return math.floor(s * 1000 / 36)
+    # Решение №2
+    return s // 0.36
+
+
+cockroach_speed(30)  # 833
+
+
+def ensure_question(s):
+    print(s + '?' if s[0:-1] != '?' else 'hello')
+
+
+# ensure_question("Well")
+# ensure_question("Yes")
+# ensure_question("")
+
+
+# 23. Check the exam. Функция принимает 2 списка, в первом правильные значения, а во втором ответы ученика. Если ответ
+# ученика правильный, то +4 очка, если неверный, то -1 очко, а если пустой ответ - то никак не меняется количество
+# РЕШЕНИЕ №1
+def check_exam(arr1, arr2):
+    result = 0
+    for i in range(0, 4):
+        if arr1[i] == arr2[i]:
+            result += 4
+        elif arr2[i] == '':
+            result += 0
+        else:
+            result -= 1
+    return result == 0 if result < 0 else result
+
+    # РЕШЕНИЕ 2
+    return max(0, sum(4 if a == b else -1 for a, b in zip(arr1, arr2) if b))
+
+
+check_exam(["a", "a", "b", "b"], ["a", "c", "b", "d"])  # 6
+check_exam(["b", "c", "b", "a"], ["", "a", "a", "c"])  # 0
+
+
+# 24. Quarter of the year. Входящий аргумент функции - месяц, нужно определить к какому кварталу он относится и вывести
+def quarter_of(month):
+    # РЕШЕНИЕ №1
+    return f'Квартал №{math.ceil(month / 3)}'
+
+
+quarter_of(3)  # 1
+quarter_of(8)  # 2
+
+
+# 25. Multiple of index. Дан массив целых чисел. Вывести новый массив с числами, которые кратны собственному индексу
+def multiple_of_index(arr):
+    # РЕШЕНИЕ №1
+    new_arr = []
+    for index, val in enumerate(arr):
+        if index != 0 and val % index == 0:
+            new_arr.append(val)
+
+    return new_arr
+    # РЕШЕНИЕ №2
+    return [lst[i] for i in range(1, len(lst)) if lst[i] % i == 0]
+
+
+multiple_of_index([22, -6, 32, 82, 9, 25])  # [-6, 32, 25]
+multiple_of_index([68, -1, 1, -7, 10, 10])  # [-1, 10]
+
+
+# 26. На вход дается число n и n чисел. Вывести все эти числа (кроме числа n) в одну строку через пробел
+def find_n():
+    n = int(input('Введите число: '))
+    print(' '.join(map(str, [n for n in range(1, n)])))
+
+
+# ind_n()
+
+
+# 27. Дан список слов. Составить из последних букв каждого слова - новое
+def create_word(lst):
+    return ''.join([w[-1] for w in lst])
+
+
+create_word(['кот', 'кити', 'ток'])  # тик
+
+
+# 28. Name Shuffler. Функция получает в виде строки имя и фамилию. Нужно поменять их местами и вернуть.
+def name_shuffler(str_):
+    return ' '.join(str_.split(' ')[::-1])
+
+
+name_shuffler('john McClane')  # McClane john
+
+
+# 29. Прогрессия
+def find_sum_prog():
+    first = int(input('Введите первый член прогрессии: '))
+    diff = int(input('Введите разность прогрессии: '))
+    n = int(input('Введите число членов прогрессии: '))
+    last_el = first
+    for i in range(first, n):
+        last_el += diff
+    final_sum = ((first + last_el) / 2) * n
+    print(f'Сумма первых {n} чисел арифметической прогрессии - {int(final_sum)}')
+
+
+find_sum_prog()  # 145
