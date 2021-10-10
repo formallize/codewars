@@ -383,7 +383,7 @@ def find_sum_prog():
     print(f'Сумма первых {n} чисел арифметической прогрессии - {int(final_sum)}')
 
 
-#find_sum_prog()  # 145
+# find_sum_prog()  # 145
 
 
 # 30. Do you speak "English"?. На входе строка, проверить содержит ли оно слово 'english' в разных раскладках
@@ -399,6 +399,15 @@ sp_eng('English')  # True
 sp_eng('1234english ;k')  # True
 sp_eng('egnlish')  # False
 
-
 objects = [1, 2, 1, 2, 3]
 print(len(set(objects)))
+
+
+# 31. Did she say hallo? Есть заготовленные слова приветствия. Вернуть T или F, если в функцию задано приветствие
+def validate_hello(greetings):
+    greet_phrases = ['hello', 'ciao', 'salut', 'hallo', 'hola', 'ahoj', 'czesc']
+
+
+validate_hello('ciao bella!')  # True
+validate_hello('HALLO, salut!')  # True
+validate_hello('meh')  # False
