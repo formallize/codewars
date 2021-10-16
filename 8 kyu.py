@@ -400,7 +400,7 @@ sp_eng('1234english ;k')  # True
 sp_eng('egnlish')  # False
 
 objects = [1, 2, 1, 2, 3]
-print(len(set(objects)))
+#print(len(set(objects)))
 
 
 # 31. Did she say hallo? Есть заготовленные слова приветствия. Вернуть T или F, если в функцию задано приветствие
@@ -427,3 +427,15 @@ def distinct(seq):
 
 
 distinct([1, 2, 1, 1, 3, 5, 5])  # [1, 2, 3, 5]
+
+
+# 33. Return Two Highest Values in List. Вернуть 2 последних числа из списка в порядке убывания
+def two_highest(arg1):
+    # РЕШЕНИЕ №1
+    return sorted(set(arg1))[:-3:-1] if len(set(arg1)) > 1 else list(set(arg1))
+
+    # РЕШЕНИЕ №2
+    return sorted(set(arg1), reverse=True)[:2]
+
+
+two_highest([15, 20, 20, 17, 18, 19])  # [20, 19]
