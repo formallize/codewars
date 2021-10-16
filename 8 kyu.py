@@ -411,3 +411,19 @@ def validate_hello(greetings):
 validate_hello('ciao bella!')  # True
 validate_hello('HALLO, salut!')  # True
 validate_hello('meh')  # False
+
+
+# 32. Remove duplicates from list. Удалить дубликаты из списка и вернуть его (не изменяя порядок)
+def distinct(seq):
+    # РЕШЕНИЕ №1
+    new_list = []
+    for i in seq:
+        if i not in new_list:
+            new_list.append(i)
+    return new_list
+
+    # РЕШЕНИЕ №2
+    return sorted(set(seq), key=seq.index)
+
+
+distinct([1, 2, 1, 1, 3, 5, 5])  # [1, 2, 3, 5]
