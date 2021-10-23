@@ -1,4 +1,7 @@
 # 1. Fake Binary. Дана строка и нужно заменить числа до 5 на 0, а 5 и выше - на 1
+from pip._internal.utils import models
+
+
 def fake_bin(x):
     # Решение №1
     lst = []
@@ -329,7 +332,7 @@ quarter_of(3)  # 1
 quarter_of(8)  # 2
 
 
-# 25. Multiple of index. Дан массив целых чисел. Вывести новый массив с числами, которые кратны собственному индексу
+# 25. Multiple of index. Дан список целых чисел. Вывести новый список с числами, которые кратны собственному индексу
 def multiple_of_index(arr):
     # РЕШЕНИЕ №1
     new_arr = []
@@ -339,7 +342,7 @@ def multiple_of_index(arr):
 
     return new_arr
     # РЕШЕНИЕ №2
-    return [lst[i] for i in range(1, len(lst)) if lst[i] % i == 0]
+    return [arr[i] for i in range(1, len(arr)) if arr[i] % i == 0]
 
 
 multiple_of_index([22, -6, 32, 82, 9, 25])  # [-6, 32, 25]
@@ -400,7 +403,9 @@ sp_eng('1234english ;k')  # True
 sp_eng('egnlish')  # False
 
 objects = [1, 2, 1, 2, 3]
-#print(len(set(objects)))
+
+
+# print(len(set(objects)))
 
 
 # 31. Did she say hallo? Есть заготовленные слова приветствия. Вернуть T или F, если в функцию задано приветствие
@@ -439,3 +444,106 @@ def two_highest(arg1):
 
 
 two_highest([15, 20, 20, 17, 18, 19])  # [20, 19]
+
+
+# 34. altERnaTIng cAsE <=> ALTerNAtiNG CaSe. Дана строка, нужно поменять раскладку на противоположную и вернуть строку
+def to_alternating_case(string):
+    # РЕШЕНИЕ №1
+    new_str = []
+    for i in string:
+        if 1 <= ord(i) <= 64:
+            new_str.append(chr(ord(i)))
+        elif 97 <= ord(i) <= 122:
+            new_str.append(chr(ord(i) - 32))
+        elif 65 <= ord(i) <= 90:
+            new_str.append(chr(ord(i) + 32))
+    return ''.join(new_str)
+
+    # РЕШЕНИЕ №2
+    return string.swapcase()
+
+    # РЕШЕНИЕ №3
+    return ''.join([c.upper() if c.lower else c.lower() for c in string])
+
+
+to_alternating_case('HeLLo WoRLD')  # hEllO wOrld
+to_alternating_case('1a2b3c4d5e')  # 1A2B3C4D5E
+
+
+# 35. Count of positives/sum of negatives. Дан список чисел. Найти количество положительных чисел и сумму отрицательных
+def count_positives_sum_negatives(arr):
+    count_pos = 0
+    sum_neg = 0
+    for i in arr:
+        if i is None:
+            return []
+        elif i < 0:
+            sum_neg += i
+        elif i > 0:
+            count_pos += 1
+    return [] if arr is None else [count_pos, sum_neg]  # НЕ РЕШЕНА
+
+
+count_positives_sum_negatives([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -11, -12, -13, -14, -15])  # [10,-65])
+count_positives_sum_negatives([0, 0, 0, 0, 0, 0, 0, 0, 0])  # [0, 0]
+count_positives_sum_negatives([])  # []
+
+
+# 36. Count by X. Даны числа x и n, вернуть список чисел от x до n с шагом x
+def count_by(x, n):
+    # РЕШЕНИЕ №1
+    return [x for x in range(x, x * n + 1, x)]
+
+    # РЕШЕНИЕ №2
+    return range(x, x * n + 1, x)
+
+
+# 37. Grasshopper - Summation. На вход принимается цифра, посчитать сумму арифметической прогрессии этой цифры
+def summation(num):
+    return sum(range(1, num + 1))
+
+
+summation(8)  # 36. 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8
+summation(2)  # 3. 1 + 2
+
+
+# 38. Is n divisible by x and y? На вход подаются числа n, x, y. Если число n делится на x или y, вернуть True
+def is_divisible(n, x, y):
+    return n % x == 0 and n % y == 0
+
+
+is_divisible(100, 2, 50)  # True
+is_divisible(6, 2, 3)  # True
+is_divisible(9, 4, 3)  # False
+
+
+# 39. Convert number to reversed array of digits. Дано число, вернуть список чисел в обратном порядке в виде списка
+def digitize(n):
+    # РЕШЕНИЕ №1
+    return [int(x) for x in str(n)][::-1]
+    # РЕШЕНИЕ №2
+    return map(int, str(n)[::-1])
+
+
+digitize(35231)  # [1, 3, 2, 5, 3]
+digitize(45762893920)  # [0, 2, 9, 3, 9, 8, 2, 6, 7, 5, 4]
+
+
+# 39. На вход подается последовательность штрих-код из чисел 4604075024433. Если сумма нечетных чисел равно трём
+# суммам чётных чисел, то штрход валидный - иначе нет
+def calc():
+    a = str(input())
+    # lst = [int(x) for x in a] - можно сделать через генератор списка или map
+    return True if sum(map(int, a)[0::2]) == sum(map(int, a)[1::2]) * 3 == 90 else False
+
+
+calc()  # 4604075024433 false
+
+
+# 40. На вход подается последовательность целых чисел. Требуется определить, присутствует ли в этой
+# последовательности одинаковые числа. Результат вернуть в формате Boolean
+def identical_num(nums):
+    return True if len(nums) == len(set(nums)) else False
+
+
+identical_num([0, 0, 1, 2, 3, 4, 5, 5, 6, 7])

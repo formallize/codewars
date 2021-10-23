@@ -55,3 +55,19 @@ initialize_names('Jack Ryan')  # Jack Ryan
 initialize_names('Lois Mary Lane')  # Lois M. Lane
 initialize_names('Dimitri')  # Dimitri
 initialize_names('Alice Betty Catherine Davis')  # Alice B. C. Davis
+
+
+# Frequency sequence. Принимается строка и разделитель. На выходе вывести строку с количеством каждого символа в строке
+def freq_seq(s, sep):
+    # РЕШЕНИЕ №1
+    return ''.join([str(s.count(w)) + sep for w in s])[:-1]
+    # РЕШЕНИЕ №2
+    sep.join([str(s.count(w) for w in s)])
+
+
+
+freq_seq('hello world', '-')  # '1-1-3-3-2-1-1-2-1-3-1'
+freq_seq('19999999', ':')  # '1:7:7:7:7:7:7:7'
+
+
+
