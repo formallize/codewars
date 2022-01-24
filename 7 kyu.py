@@ -65,9 +65,76 @@ def freq_seq(s, sep):
     sep.join([str(s.count(w) for w in s)])
 
 
-
 freq_seq('hello world', '-')  # '1-1-3-3-2-1-1-2-1-3-1'
 freq_seq('19999999', ':')  # '1:7:7:7:7:7:7:7'
 
 
+# 4. Задача «FizzBuzz». Написать программу, которая будет печатать все числа от 1 до 100. При этом: Если число
+# делится на 3, вместо числа напечатать Fizz. Если число делится на 5, вместо числа напечатать Buzz. Если число
+# делится и на 3, и на 5 - напечатать FizzBuzz
+def fizzbuzz():
+    return ['FizzBuzz' if x % 3 == 0 and x % 5 == 0 else 'Fizz' if x % 3 else 'Buzz' if x % 5 == 0 else x for x in
+            range(1, 101)]
 
+
+fizzbuzz()
+
+
+# 5. Есть заданный основной отрезок [A, B] и есть N - количество произвольных задаваемых отрезков. Необходимо вычислить
+# длину основного отрезка, на которой не происходит наложения дополнительных отрезков
+# A = 15, B = 165
+# N1 [37, 68] N2 [52, 74] N3 [118,146] N4 [35, 44] N5 [37, 65] N6 [46, 74]
+def my_def():
+    set1 = ({x for x in range(37, 69)} | {x for x in range(52, 75)} | {x for x in range(118, 147)} |
+            {x for x in range(35, 45)} | {x for x in range(37, 66)} | {x for x in range(46, 75)})
+    # print(len({x for x in range(15, 166)} - set1))
+    # print({x for x in range(15, 166)} - set1)
+
+
+my_def()
+
+
+# def f(s1, s2):
+#     if set(s1) == set(s2):
+#         print('true')
+#     else:
+#         print('false')
+
+#
+# f('dgo', 'dog')
+# f('sddd', 'sddf')
+
+
+# 6. Disemvowel Trolls. На вход подается фраза и нужно вывести строку без гласных символов.
+def disemvowel(string_):
+    return ''.join([ch for ch in string_ if ch.lower() not in 'aoeui'])
+
+
+disemvowel("This website is for losers LOL!")  # Ths wbst s fr lsrs LL!
+
+
+# 7. Descending Order. На вход приходит число. Небходимо составить максимально возможное число из этих цифр.
+def descending_order(num):
+    # РЕШЕНИЕ №1
+    return ''.join(sorted([n for n in str(num)], reverse=True))
+
+    # РЕШЕНИЕ №2
+    return int("".join(sorted(str(num), reverse=True)))
+
+
+descending_order(123456789)  # 987654321
+descending_order(145263)  # 654321
+
+
+# 8. Mumbling.
+# accum("abcd") -> "A-Bb-Ccc-Dddd"
+# accum("RqaEzty") -> "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+# accum("cwAt") -> "C-Ww-Aaa-Tttt"
+
+
+def accum(s):
+    # return reduce(lambda x, y: x + '-' + (y * (s.find(y)+1)).title(), [c for c in s])
+    return '-'.join(ch.upper() + ch.lower() * i for i, ch in enumerate(s))
+
+
+accum("ZpgglnRxqenU")  # Z-Pp-Ggg-Lull-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu

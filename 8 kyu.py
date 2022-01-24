@@ -128,10 +128,10 @@ def reverse_words(text):
     return ' '.join([word[::-1] for word in word_list])
 
 
-# reverse_words("This is an example!")
+# reverse_words("This is an example!") # sihT si na !elpmaxe
 
 
-# 10. List Filtering. Функция принимает список из положительных чисел и строк, возвращает список из чисел следуюзим
+# 10. List Filtering. Функция принимает список из положительных чисел и строк, возвращает список из чисел следующим
 # образом  filter_list([1,2,'a','b']) == [1,2]
 def filter_list(l):
     # Решение №1
@@ -202,6 +202,7 @@ def find_difference(a, b):
     # return (mul_b - mul_a if a_list < mul_b else mul_a - mul_b)
 
     # Решение №2
+    from functools import reduce
     return abs((reduce(lambda x, y: x * y, a)) - reduce(lambda x, y: x * y, b))
 
 
@@ -267,15 +268,16 @@ hello("john")  # Hello, John!
 hello("aliCE")  # Hello, Alice!
 hello("")  # Hello, World!
 
+
 # 21. Return Two Highest Values in List. Дан список из чисел. Нужно вернуть 2 максимальных значения в списке,
 # если меньше 2 уникальных значений - вернуть его
-# def two_highest(arg1):
-#     print(sorted(set(arg1))[:0:-1] if len(set(arg1)) > 2 else list(set(arg1)))
-#
-#
-# two_highest([15, 20, 20, 17])  # [20, 17]
-# two_highest([1, 1, 1])  # [1]
-# two_highest([])  #
+def two_highest(arg1):
+    return sorted(set(arg1))[:0:-1] if len(set(arg1)) > 2 else list(set(arg1))
+
+
+two_highest([15, 20, 20, 17])  # [20, 17]
+two_highest([1, 1, 1])  # [1]
+two_highest([])  #
 
 # 22. Beginner Series #4 Cockroach. Тараканы - самые быстрые насекомые. Перевести скорость км/ч в см/сек
 import math
@@ -543,7 +545,46 @@ calc()  # 4604075024433 false
 # 40. На вход подается последовательность целых чисел. Требуется определить, присутствует ли в этой
 # последовательности одинаковые числа. Результат вернуть в формате Boolean
 def identical_num(nums):
-    return True if len(nums) == len(set(nums)) else False
+    return True if len(nums) != len(set(nums)) else False
 
 
 identical_num([0, 0, 1, 2, 3, 4, 5, 5, 6, 7])
+
+# 41. Beginner - Reduce but Grow. Дан массив с числами, вычислить произведения его чисел
+from functools import reduce
+
+
+def grow(arr):
+    return reduce(lambda x, y: x * y, arr)
+
+
+grow(1, 2, 3)  # 6
+
+
+# 42. Simple multiplication. Вернуть число, умноженное на 8, если число чётное, а если нечетное - умножить на 9
+
+def sumple_multiplication(number):
+    return number * 9 if number % 2 else number * 8
+
+
+sumple_multiplication(8)  # 64
+sumple_multiplication(1)  # 9
+
+
+# 43. Even or Odd. Вернуть 'Even', если число чётное и 'Odd', если нечетное
+def even_or_odd(number):
+    return 'Even' if number % 2 == 0 else 'Odd'
+
+
+# 44. Opposites Attract. Тимми и Сара думают, что они в любви, но там, где живут, больные узнают только тогда,
+# когда они выберут более низкую цену. Если на одном из цветов четное количество лепестков, а у другого нечетное
+# количество лепестков, это означает, что они влюблены. Напишите функцию, которая будет принимать количество
+# лепестков каждого цветка и возвращать true, если они влюблены, и false, если нет.
+def lovefunc(flower1, flower2):
+    return True if (flower1 + flower2) % 2 == 1 else False
+
+
+lovefunc(1, 4)  # True
+lovefunc(2, 2)  # False
+lovefunc(0, 1)  # True
+lovefunc(0, 0)  # False
