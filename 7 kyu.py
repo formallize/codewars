@@ -138,3 +138,36 @@ def accum(s):
 
 
 accum("ZpgglnRxqenU")  # Z-Pp-Ggg-Lull-Nnnnn-Rrrrrr-Xxxxxxx-Qqqqqqqq-Eeeeeeeee-Nnnnnnnnnn-Uuuuuuuuuuu
+
+
+# 9. Get the Middle Character. Задача — вернуть средний символ слова. Если длина слова нечетная, вернуть средний
+# символ. Если длина слова четная - вернуть средние 2 символа
+
+def get_middle(s):
+    # РЕШЕНИЕ №1
+    if len(s) % 2 == 0:
+        return s[len(s) // 2 - 1:len(s) // 2 + 1]
+    else:
+        return s[len(s) // 2]
+    # РЕШЕНИЕ №2
+    return s[(len(s) - 1) / 2:len(s) / 2 + 1]
+
+
+get_middle("test")  # "es"
+get_middle("testing")  # "t"
+
+
+# 10. Credit Card Mask. Зашифровать по типу маски кредитных карт
+def maskify(cc):
+    # РЕШЕНИЕ №1
+    if len(cc) > 5:
+        return "#" * (len(cc) - 4) + cc[-4:]
+    else:
+        return cc
+    # РЕШЕНИЕ №2
+    return "#" * (len(cc) - 4) + cc[-4:]
+
+
+maskify("4556364607935616")  # ############5616
+maskify("64607935616")  # #######5616
+maskify("1")  # 1
