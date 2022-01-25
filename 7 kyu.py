@@ -171,3 +171,11 @@ def maskify(cc):
 maskify("4556364607935616")  # ############5616
 maskify("64607935616")  # #######5616
 maskify("1")  # 1
+
+
+# 11. Shortest Word. На вход подается фраза из слов, вычислить длину самого короткого слова.
+def find_short(s):
+    return min([len(w) for w in s.split(' ')])
+
+
+find_short("bitcoin take over the world maybe who knows perhaps")  # 3
