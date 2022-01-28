@@ -18,3 +18,13 @@ def find_it(seq):
 find_it([20, 1, -1, 2, -2, 3, 3, 5, 5, 1, 2, 4, 20, 4, -1, -2, 5])  # 5 (встречается 3 раза)
 find_it([1, 1, 2, -2, 5, 2, 4, 4, -1, -2, 5])  # -1 (встречается 1 раз)
 find_it([10, 10, 10])  # 10 (встречается 1 раз)
+
+
+# 2. Counting Duplicates. На вход подается строка, вывести количество символов, которые встречаются более 1 раза вне
+# зависимости от регистра.
+def duplicate_count(text):
+    return len([c for c in set(text.lower()) if text.lower().count(c) > 1])
+
+
+duplicate_count("abideaa")  # 1 (a)
+duplicate_count("Indivisibilities")  # 2 (s, i)
