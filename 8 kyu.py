@@ -588,3 +588,4 @@ lovefunc(1, 4)  # True
 lovefunc(2, 2)  # False
 lovefunc(0, 1)  # True
 lovefunc(0, 0)  # False
+

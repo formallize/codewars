@@ -28,3 +28,43 @@ def duplicate_count(text):
 
 duplicate_count("abideaa")  # 1 (a)
 duplicate_count("Indivisibilities")  # 2 (s, i)
+
+# 3. Sum of Digits / Digital Root. Получаем на вход число, нужно складывать числа числа пока не дойдем до одной цифры.
+# Пример:
+# 16  -->  1 + 6 = 7
+# 942  -->  9 + 4 + 2 = 15  -->  1 + 5 = 6
+# 132189  -->  1 + 3 + 2 + 1 + 8 + 9 = 24  -->  2 + 4 = 6
+# 493193  -->  4 + 9 + 3 + 1 + 9 + 3 = 29  -->  2 + 9 = 11  -->  1 + 1 = 2
+
+
+# 4. Who likes it?
+[]  # "no one likes this"
+["Peter"]  # "Peter likes this"
+["Jacob", "Alex"]  # "Jacob and Alex like this"
+["Max", "John", "Mark"]  # "Max, John and Mark like this"
+["Alex", "Jacob", "Mark", "Max"]  # "Alex, Jacob and 2 others like this"
+
+
+def likes(names):
+    # РЕШЕНИЕ №1
+    if names:
+        if len(names) == 1:
+            return f'{names[0]} likes this'
+        elif len(names) == 2:
+            return f'{" and ".join(names)} like this'
+        elif len(names) == 3:
+            return f'{names[0]}, {names[1]} and {names[2]} like this'
+        else:
+            return f'{names[0]}, {names[1]} and {len(names) - 2} others like this'
+    else:
+        return 'no one likes this'
+
+    # РЕШЕНИЕ №2
+    n = len(names)
+    return {
+        0: 'no one likes this',
+        1: '{} likes this',
+        2: '{} and {} like this',
+        3: '{}, {} and {} like this',
+        4: '{}, {} and {others} others like this'
+    }[min(4, n)].format(*names[:3], others=n - 2)

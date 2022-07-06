@@ -1,4 +1,6 @@
 # 1. Are they square? Дан список и нужно определить, являются ли элементы списка квадратами целого числа
+
+
 def is_square(arr):
     # РЕШЕНИЕ №1
     if not arr:
@@ -179,3 +181,47 @@ def find_short(s):
 
 
 find_short("bitcoin take over the world maybe who knows perhaps")  # 3
+
+
+# 12. Isograms. Изограмма — это слово, в котором нет повторяющихся букв. Последовательные или непоследовательные.
+# Реализуйте функцию, которая определяет, является ли строка, которая содержит только буквы, является изограммой.
+# Предположим, что пустая строка является изограммой. Игнорировать регистр букв.
+def is_isogram(s):
+    # РЕШЕНИЕ №1:
+    new_s = ""
+    for ch in s:
+        if not ch.lower() in new_s:
+            new_s = new_s + ch
+    print(new_s)
+    return len(s) == len(new_s)
+
+    # РЕШЕНИЕ №2
+    return len(string) == len(set(string.lower()))
+
+
+is_isogram("Dermatoglyphics")  # Dermatoglyphics True
+
+
+# 13. Exes and Ohs. Проверьте, содержит ли строка одинаковое количество символов «x» и «o». Метод должен возвращать
+# логическое значение и не учитывать регистр. Строка может содержать любые символы.
+
+
+def xo(s):
+    # РЕШЕНИЕ №1:
+    s_x = 0
+    s_o = 0
+    for ch in s:
+        if ch.lower() == "x":
+            s_x += 1
+        elif ch.lower() == "o":
+            s_o += 1
+    return s_x == s_o
+    # РЕШЕНИЕ №2
+    s = s.lower()
+    return s.count('x') == s.count('o')
+
+xo('xo')
+xo('xo0')
+xo('xxxoo')
+
+
