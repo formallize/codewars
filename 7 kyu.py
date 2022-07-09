@@ -1,4 +1,5 @@
 # 1. Are they square? Дан список и нужно определить, являются ли элементы списка квадратами целого числа
+from math import sqrt
 
 
 def is_square(arr):
@@ -192,7 +193,6 @@ def is_isogram(s):
     for ch in s:
         if not ch.lower() in new_s:
             new_s = new_s + ch
-    print(new_s)
     return len(s) == len(new_s)
 
     # РЕШЕНИЕ №2
@@ -220,8 +220,56 @@ def xo(s):
     s = s.lower()
     return s.count('x') == s.count('o')
 
+
 xo('xo')
 xo('xo0')
 xo('xxxoo')
 
 
+# 14. Count the divisors of a number. Подсчитайте количество делителей натурального числа n.
+# 4 --> 3 (1, 2, 4)
+# 5 --> 2 (1, 5)
+# 12 --> 6 (1, 2, 3, 4, 6, 12)
+# 30 --> 8 (1, 2, 3, 5, 6, 10, 15, 30)
+
+
+def divisors(number):
+    # РЕШЕНИЕ №1
+    new_arr = 0
+    for n in range(1, number + 1):
+        if number % n == 0:
+            new_arr += 1
+    return new_arr
+
+    # РЕШЕНИЕ №2
+    return len([n for n in range(1, number + 1) if n % n == 0])
+
+
+# 15. Find the next perfect square! Завершите метод findNextSquare, который находит следующий целочисленный идеальный
+# квадрат после квадрата, переданного в качестве параметра. Напомним, что интеграл идеальный квадрат — это целое
+# число n, такое что sqrt(n) также является целым числом. Если параметр сам по себе не является идеальным квадратом,
+# то следует вернуть -1.
+
+# 121 --> 144
+# 625 --> 676
+# 114 --> -1 since 114 is not a perfect square
+
+def find_next_square(sq):
+    # РЕШЕНИЕ №1
+    if not sqrt(sq) % 1 == 0:
+        return -1
+    return int((sqrt(sq) + 1) ** 2)
+
+    # РЕШЕНИЕ №2
+    root = sq ** 0.5
+    if root.is_integer():
+        return (root + 1)**2
+    return -1
+
+    # РЕШЕНИЕ №3
+    x = sq ** 0.5
+    return -1 if x % 1 else (x + 1) ** 2
+
+
+find_next_square(121)
+find_next_square(600)

@@ -589,3 +589,9 @@ lovefunc(2, 2)  # False
 lovefunc(0, 1)  # True
 lovefunc(0, 0)  # False
 
+
+# 45. Find Nearest square number. Ваша задача состоит в том, чтобы найти ближайшее квадратное число, Nearest_sq(n),
+# положительного целого числа n.
+def nearest_sq(n):
+    sq = n ** 0.5
+    return round(sq) ** 2
