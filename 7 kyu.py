@@ -263,7 +263,7 @@ def find_next_square(sq):
     # РЕШЕНИЕ №2
     root = sq ** 0.5
     if root.is_integer():
-        return (root + 1)**2
+        return (root + 1) ** 2
     return -1
 
     # РЕШЕНИЕ №3
@@ -273,3 +273,44 @@ def find_next_square(sq):
 
 find_next_square(121)
 find_next_square(600)
+
+
+# 16. Sum of two lowest positive integers. Создайте функцию, которая возвращает сумму двух наименьших положительных
+# чисел, учитывая массив из минимум 4 положительных целых чисел. будут переданы положительные целые числа. Например,
+# когда передается массив вида [19,5,42,2,77], на выходе должно быть 7.
+
+def sum_two_smallest_numbers(numbers):
+    return sum(sorted(numbers)[:2])
+
+
+sum_two_smallest_numbers([5, 8, 12, 18, 22])  # 13
+sum_two_smallest_numbers([7, 15, 12, 18, 22])  # 19
+
+
+# 17. Ones and Zeros. Учитывая массив единиц и нулей, преобразуйте эквивалентное двоичное значение в целое число.
+# Например: [0,0,0,1] обрабатывается как 0001, что является двоичным представлением 1.
+
+# Testing: [0, 0, 0, 1] ==> 1
+# Testing: [0, 0, 1, 0] ==> 2
+# Testing: [0, 1, 0, 1] ==> 5
+# Testing: [1, 0, 0, 1] ==> 9
+# Testing: [0, 0, 1, 0] ==> 2
+# Testing: [0, 1, 1, 0] ==> 6
+# Testing: [1, 1, 1, 1] ==> 15
+# Testing: [1, 0, 1, 1] ==> 11
+
+def binary_array_to_number(arr):
+    # РЕШЕНИЕ №1
+    sum = 0
+    for i, n in enumerate(arr[::-1]):
+        sum += n * 2 ** i
+    return sum
+    # РЕШЕНИЕ №2
+    return int("".join(map(str, arr)), 2)
+    # РЕШЕНИЕ №3
+    return int(''.join(str(a) for a in arr), 2)
+
+
+binary_array_to_number([0, 0, 0, 1]) # 1
+binary_array_to_number([0, 1, 1, 0]) # 6
+binary_array_to_number([1, 1, 1, 1]) # 15
